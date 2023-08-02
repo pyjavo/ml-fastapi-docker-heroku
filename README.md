@@ -1,6 +1,10 @@
 # Deploy ML models with FastAPI, Docker, and Render
 
-Inspired by [render-examples/fastapi](https://github.com/render-examples/fastapi/tree/main)
+Inspired by:
+- [render-examples/fastapi](https://github.com/render-examples/fastapi/tree/main)
+- [Youtube video by AssemblyAI](https://youtu.be/h5wLuVDr0oc)
+
+## How to deploy
 
 ### 1. Develop and save the model with this Colab
 
@@ -18,3 +22,61 @@ uvicorn app.main:app --host 0.0.0.0 --port $PORT
 ```
 
 - Click Create Web Service.
+
+
+## How to test it
+
+### Using CURL
+
+```bash
+curl -X 'POST' \
+  'https://assemblyai-project.onrender.com/predict' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "text": "Hola, ¿cómo estás?"
+}'
+```
+
+Answer should be something like:
+
+```bash
+{
+    "language": "Spanish"
+}
+```
+
+### Using httpie
+
+- First install the python package
+```bash
+pip install httpie
+```
+
+- Then run this command with your preferred text:
+
+```bash
+https -v GET assemblyai-project.onrender.com
+```
+
+Answer should be something like:
+
+```bash
+{
+    "language": "Spanish"
+}
+```
+
+- Try with this one
+
+```bash
+https -v POST assemblyai-project.onrender.com/predict text="Comment allez-vous?"
+```
+
+Answer should be something like:
+
+```bash
+{
+    "language": "French"
+}
+```
