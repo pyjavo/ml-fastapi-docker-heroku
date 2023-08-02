@@ -22,5 +22,13 @@ def home():
 
 @app.post("/predict", response_model=PredictionOut)
 def predict(payload: TextIn):
+    '''Function that calls the predict method from the model
+
+    Args:
+        - payload's text should a string type
+
+    Output:
+        - language: The output should also be a string
+    '''
     language = predict_pipeline(payload.text)
     return {"language": language}
