@@ -63,7 +63,8 @@ Answer should be something like:
 
 ```bash
 {
-    "language": "Spanish"
+    "health_check": "OK",
+    "model_version": "0.1.0"
 }
 ```
 
